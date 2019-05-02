@@ -1,0 +1,124 @@
+-- vim: ts=4 sw=4 noet ai cindent syntax=lua
+--[[
+Conky, a system monitor, based on torsmo
+
+Any original torsmo code is licensed under the BSD license
+
+All code written since the fork of torsmo is licensed under the GPL
+
+Please see COPYING for details
+
+Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+Copyright (c) 2005-2012 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+All rights reserved.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+]]
+
+conky.config = {
+	xinerama_head = 2,
+    alignment = 'top_right',
+    background = false,	
+    border_width = 1,
+    cpu_avg_samples = 2,
+	double_buffer = yes,
+	default_color = 'green',
+    default_outline_color = 'darkgreen',
+    default_shade_color = 'darkgreen',
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    use_xft = true,
+    font = 'DejaVu Sans Mono:size=11',
+    gap_x = 30,
+    gap_y = 20,
+    minimum_height = 5,
+	minimum_width = 5,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_stderr = false,
+    extra_newline = false,
+    own_window = true,
+	own_window_transparent = true,
+	own_window_argb_visual = true,
+    own_window_class = 'Conky',
+    own_window_type = 'desktop',
+    stippled_borders = 0,
+    update_interval = 1,
+    uppercase = false,
+    use_spacer = 'none',
+    show_graph_scale = true,
+    show_graph_range = false
+}
+
+conky.text = [[
+${scroll 35 $nodename - $sysname $kernel on $machine | }
+${color white}Uptime:$color $uptime
+$hr
+RAM:
+${color white}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
+${color white}Swap Usage:$color $swap/$swapmax - $swapperc% ${swapbar 4}
+$hr
+${color white}CPU:
+${color white}Frequency:$color $freq MHz
+${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_label} $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_max | cut -c-3} °C
+${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp2_label} $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp2_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp2_max | cut -c-3} °C
+${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp3_label} $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp3_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp3_max | cut -c-3} °C
+${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp4_label} $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp4_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp4_max | cut -c-3} °C
+${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp5_label} $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp5_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp5_max | cut -c-3} °C
+
+${color white}Usage:$color $cpu% ${cpubar 4}
+#${color white}LCore 0 ${offset 9}$color${cpu cpu0}%   ${alignr 8}${color white}LCore 1 ${offset 9}$color${cpu cpu1}%
+#${color white}LCore 2 ${offset 9}$color${cpu cpu2}%   ${alignr 8}${color white}LCore 3 ${offset 9}$color${cpu cpu3}%
+#${color white}LCore 4 ${offset 9}$color${cpu cpu4}%   ${alignr 8}${color white}LCore 5 ${offset 9}$color${cpu cpu5}%
+#${color white}LCore 6 ${offset 9}$color${cpu cpu6}%   ${alignr 8}${color white}LCore 7 ${offset 9}$color${cpu cpu7}%
+${color white}LCORE1: $color${cpu cpu1}% $alignr ${freq_g 0} GHz $alignr ${cpubar cpu1 8,60}
+${color white}LCORE2: $color${cpu cpu2}% $alignr ${freq_g 1} GHz $alignr ${cpubar cpu2 8,60}
+${color white}LCORE3: $color${cpu cpu3}% $alignr ${freq_g 2} GHz $alignr ${cpubar cpu3 8,60}
+${color white}LCORE4: $color${cpu cpu4}% $alignr ${freq_g 3} GHz $alignr ${cpubar cpu4 8,60}
+${color white}LCORE5: $color${cpu cpu5}% $alignr ${freq_g 4} GHz $alignr ${cpubar cpu5 8,60}
+${color white}LCORE6: $color${cpu cpu6}% $alignr ${freq_g 5} GHz $alignr ${cpubar cpu6 8,60}
+${color white}LCORE7: $color${cpu cpu7}% $alignr ${freq_g 6} GHz $alignr ${cpubar cpu7 8,60}
+${color white}LCORE8: $color${cpu cpu8}% $alignr ${freq_g 7} GHz $alignr ${cpubar cpu8 8,60}
+${color white}Processes:$color $processes  ${alignr 8}${color white}Running:$color $running_processes
+$hr
+${color white}GPU:
+${color white}GeForce GPU: $color $alignr ${nvidia gpufreq} Mhz
+${color white}Memory: $color $alignr ${nvidia memfreq} Mhz
+${color white}Temperature: $color $alignr ${nvidia temp} °C
+$hr
+${color white}File systems:
+${color white}/boot $color${fs_used /boot}/${fs_size /boot} ${fs_bar 6 /boot}
+${color white}/ $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
+${color white}/steampart $color${fs_used /steampart}/${fs_size /steampart} ${fs_bar 6 /steampart}
+${color white}<gDrive> $color${fs_used /home/co0n/google-drive}/${fs_size /home/coon/google-drive} ${fs_bar 6 /home/co0n/google-drive}
+#${color white}/media/co0n/7a59f274-2a0c-4233-a4bf-03233b45a7e9 $color${fs_used /media/co0n/7a59f274-2a0c-4233-a4bf-03233b45a7e9}/${fs_size /media/co0n/7a59f274-2a0c-4233-a4bf-03233b45a7e9} ${fs_bar 6 /media/co0n/7a59f274-2a0c-4233-a4bf-03233b45a7e9}
+
+$hr
+${color white}Disk-Load:
+${color white}/dev/nvme0n1 (R/W)	$alignr $color${diskio_read /dev/nvme0n1}/ ${diskio_write /dev/nvme0n1}
+#Read : ${diskiograph_read /dev/nvme0n1 6}
+#Write: ${diskiograph_write /dev/nvme0n1 6}
+${color white}/dev/sda (R/W)	$alignr $color${diskio_read /dev/sda}/ ${diskio_write /dev/sda}
+${color white}/dev/sdb (R/W)	$alignr $color${diskio_read /dev/sdb}/ ${diskio_write /dev/sdb}
+${color white}/dev/sdc (R/W)	$alignr $color${diskio_read /dev/sdc}/ ${diskio_write /dev/sdc}
+$hr
+
+${color white}Networking:
+Ethernet:
+ Up:$color ${upspeed enp60s0} ${color white}${alignr 8}Down:$color ${downspeed enp60s0}
+${color white}WiFi:
+ Up:$color ${upspeed wlp61s0} ${color white}${alignr 8}Down:$color ${downspeed wlp61s0}
+]]
