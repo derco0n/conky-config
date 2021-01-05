@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 
 conky.config = {
-	xinerama_head = 2,
+	xinerama_head = 0,
     alignment = 'top_right',
     background = false,	
     border_width = 1,
@@ -71,41 +71,44 @@ RAM:
 ${color white}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
 ${color white}Swap Usage:$color $swap/$swapmax - $swapperc% ${swapbar 4}
 $hr
+${color white}Cryptographic:
+Entropy available: $color ${entropy_avail} (${entropy_perc} %)
+${entropy_bar}
+$hr
 ${color white}CPU:
 ${color white}Frequency:$color $freq MHz
-${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_label} $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_max | cut -c-3} °C
-${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp2_label} $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp2_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp2_max | cut -c-3} °C
-${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp3_label} $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp3_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp3_max | cut -c-3} °C
-${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp4_label} $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp4_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp4_max | cut -c-3} °C
-${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp5_label} $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp5_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp5_max | cut -c-3} °C
-
-${color white}Usage:$color $cpu% ${cpubar 4}
-#${color white}LCore 0 ${offset 9}$color${cpu cpu0}%   ${alignr 8}${color white}LCore 1 ${offset 9}$color${cpu cpu1}%
-#${color white}LCore 2 ${offset 9}$color${cpu cpu2}%   ${alignr 8}${color white}LCore 3 ${offset 9}$color${cpu cpu3}%
-#${color white}LCore 4 ${offset 9}$color${cpu cpu4}%   ${alignr 8}${color white}LCore 5 ${offset 9}$color${cpu cpu5}%
-#${color white}LCore 6 ${offset 9}$color${cpu cpu6}%   ${alignr 8}${color white}LCore 7 ${offset 9}$color${cpu cpu7}%
-${color white}LCORE1: $color${cpu cpu1}% $alignr ${freq_g 0} GHz $alignr ${cpubar cpu1 8,60}
-${color white}LCORE2: $color${cpu cpu2}% $alignr ${freq_g 1} GHz $alignr ${cpubar cpu2 8,60}
-${color white}LCORE3: $color${cpu cpu3}% $alignr ${freq_g 2} GHz $alignr ${cpubar cpu3 8,60}
-${color white}LCORE4: $color${cpu cpu4}% $alignr ${freq_g 3} GHz $alignr ${cpubar cpu4 8,60}
-${color white}LCORE5: $color${cpu cpu5}% $alignr ${freq_g 4} GHz $alignr ${cpubar cpu5 8,60}
-${color white}LCORE6: $color${cpu cpu6}% $alignr ${freq_g 5} GHz $alignr ${cpubar cpu6 8,60}
-${color white}LCORE7: $color${cpu cpu7}% $alignr ${freq_g 6} GHz $alignr ${cpubar cpu7 8,60}
-${color white}LCORE8: $color${cpu cpu8}% $alignr ${freq_g 7} GHz $alignr ${cpubar cpu8 8,60}
+${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_label}${color white}: $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_max | cut -c-3} °C
+${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp2_label}${color white}: $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp2_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp2_max | cut -c-3} °C
+${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp3_label}${color white}: $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp3_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp3_max | cut -c-3} °C
+${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp4_label}${color white}: $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp4_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp4_max | cut -c-3} °C
+${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp5_label}${color white}: $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp5_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp5_max | cut -c-3} °C
+${color white}Usage:$color $cpu% ${cpubar}
+${color white}LCORE0: $color${cpu cpu0}% $alignr ${freq_g 0} GHz $alignr ${cpubar cpu0 8,60}
+${color white}LCORE1: $color${cpu cpu1}% $alignr ${freq_g 1} GHz $alignr ${cpubar cpu1 8,60}
+${color white}LCORE2: $color${cpu cpu2}% $alignr ${freq_g 2} GHz $alignr ${cpubar cpu2 8,60}
+${color white}LCORE3: $color${cpu cpu3}% $alignr ${freq_g 3} GHz $alignr ${cpubar cpu3 8,60}
+${color white}LCORE4: $color${cpu cpu4}% $alignr ${freq_g 4} GHz $alignr ${cpubar cpu4 8,60}
+${color white}LCORE5: $color${cpu cpu5}% $alignr ${freq_g 5} GHz $alignr ${cpubar cpu5 8,60}
+${color white}LCORE6: $color${cpu cpu6}% $alignr ${freq_g 6} GHz $alignr ${cpubar cpu6 8,60}
+${color white}LCORE7: $color${cpu cpu7}% $alignr ${freq_g 7} GHz $alignr ${cpubar cpu7 8,60}
 ${color white}Processes:$color $processes  ${alignr 8}${color white}Running:$color $running_processes
 $hr
 ${color white}GPU:
-${color white}GeForce GPU: $color $alignr ${nvidia gpufreq} Mhz
-${color white}Memory: $color $alignr ${nvidia memfreq} Mhz
+${color white}GeForce GPU: $color $alignr ${nvidia gpufreq} Mhz | Load: ${exec nvidia-smi | grep % | cut -c 61-63} %
+${color white}Memory: $color $alignr ${nvidia memfreq} Mhz |${exec nvidia-smi | grep % | cut -c 37-40}/${exec nvidia-smi | grep % | cut -c 48-51} MB
 ${color white}Temperature: $color $alignr ${nvidia temp} °C
+${color white}Power: $color $alignr ${exec nvidia-smi | grep % | cut -c 21-23} W
 $hr
 ${color white}File systems:
 ${color white}/boot $color${fs_used /boot}/${fs_size /boot} ${fs_bar 6 /boot}
 ${color white}/ $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
-${color white}/steampart $color${fs_used /steampart}/${fs_size /steampart} ${fs_bar 6 /steampart}
-${color white}<gDrive> $color${fs_used /home/co0n/google-drive}/${fs_size /home/coon/google-drive} ${fs_bar 6 /home/co0n/google-drive}
+${color white}/media/LUKS/data $color${fs_used /media/LUKS/data}/${fs_size /media/LUKS/data} ${fs_bar 6 /media/LUKS/data}
+#${color white}/media/LUKS/data $color${fs_used /media/LUKS/data}/${fs_size /media/LUKS/data} ${fs_bar 6 /media/LUKS/data}
+${color white}/ramdisk $color${fs_used /ramdisk}/${fs_size /ramdisk} ${fs_bar 6 /ramdisk}
+#${color white}/media/veracrypt1 $color${fs_used /media/veracrypt1}/${fs_size /media/veracrypt1} ${fs_bar 6 /media/veracrypt1}
+#${color white}<gDrive> $color${fs_used /home/co0n/google-drive}/${fs_size /home/coon/google-drive} ${fs_bar 6 /home/co0n/google-drive}
+#${color white}/home/co0n/CIFS $color${fs_used /home/co0n/CIFS}/${fs_size /home/co0n/CIFS} ${fs_bar 6 /home/co0n/CIFS}
 #${color white}/media/co0n/7a59f274-2a0c-4233-a4bf-03233b45a7e9 $color${fs_used /media/co0n/7a59f274-2a0c-4233-a4bf-03233b45a7e9}/${fs_size /media/co0n/7a59f274-2a0c-4233-a4bf-03233b45a7e9} ${fs_bar 6 /media/co0n/7a59f274-2a0c-4233-a4bf-03233b45a7e9}
-
 $hr
 ${color white}Disk-Load:
 ${color white}/dev/nvme0n1 (R/W)	$alignr $color${diskio_read /dev/nvme0n1}/ ${diskio_write /dev/nvme0n1}
@@ -114,11 +117,11 @@ ${color white}/dev/nvme0n1 (R/W)	$alignr $color${diskio_read /dev/nvme0n1}/ ${di
 ${color white}/dev/sda (R/W)	$alignr $color${diskio_read /dev/sda}/ ${diskio_write /dev/sda}
 ${color white}/dev/sdb (R/W)	$alignr $color${diskio_read /dev/sdb}/ ${diskio_write /dev/sdb}
 ${color white}/dev/sdc (R/W)	$alignr $color${diskio_read /dev/sdc}/ ${diskio_write /dev/sdc}
+${color white}/dev/sdd (R/W)	$alignr $color${diskio_read /dev/sdd}/ ${diskio_write /dev/sdd}
 $hr
-
 ${color white}Networking:
-Ethernet:
+Ethernet ($color${addr enp60s0}):
  Up:$color ${upspeed enp60s0} ${color white}${alignr 8}Down:$color ${downspeed enp60s0}
-${color white}WiFi:
+${color white}WiFi ($color${addr wlp61s0}):
  Up:$color ${upspeed wlp61s0} ${color white}${alignr 8}Down:$color ${downspeed wlp61s0}
 ]]
