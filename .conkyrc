@@ -46,7 +46,7 @@ conky.config = {
     minimum_height = 5,
 	minimum_width = 5,
     net_avg_samples = 2,
-    no_buffers = false,
+    no_buffers = true,
     out_to_console = false,
     out_to_stderr = false,
     extra_newline = false,
@@ -60,7 +60,7 @@ conky.config = {
     uppercase = false,
     use_spacer = 'none',
     show_graph_scale = true,
-    show_graph_range = false
+    show_graph_range = true
 }
 
 conky.text = [[
@@ -117,4 +117,18 @@ ${color white}vboxnet0 ($color${addr vboxnet0}${color white}):
  Up:$color ${upspeed vboxnet0} ${color white}${alignr 8}Down:$color ${downspeed vboxnet0}
 ${color white}docker0 ($color${addr docker0}${color white}):
  Up:$color ${upspeed docker0} ${color white}${alignr 8}Down:$color ${downspeed docker0}
+$hr
+${font Product Sand:size=22}\
+${color}${time %H}${color0}:${color}${time %M}\
+${font Product Sand:weight=Bold:size=12}${color0}\
+${time %p}
+#${voffset -10}
+#${voffset -30}
+${font Product Sans:size=10}${color0}\
+${time %A}
+${font Product Sans:weight=Bold:size=16}${color0}\
+${color}${time %d. %B} ${color0}\
+${font Product Sand:size=16}${time %Y}
+${font Product Sans:size=10}${color0}\
+KW: ${color}${time %W} ${color0}
 ]]
