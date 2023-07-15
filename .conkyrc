@@ -77,11 +77,11 @@ ${entropy_bar}
 $hr
 ${color white}${execi 1000 cat /proc/cpuinfo | grep 'model name' | sed -e 's/model name.*: //'| uniq | cut -c 1-27} CPU:
 ${color white}Frequency:$color $freq MHz
-${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp1_label}${color white}: $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp1_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp1_max | cut -c-3} °C
-${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp2_label}${color white}: $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp2_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp2_max | cut -c-3} °C
-${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp3_label}${color white}: $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp3_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp3_max | cut -c-3} °C
-${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp4_label}${color white}: $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp4_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp4_max | cut -c-3} °C
-${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp5_label}${color white}: $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp5_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp5_max | cut -c-3} °C
+${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp1_label}${color white}: $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp1_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp1_max | cut -c-3} °C
+${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp2_label}${color white}: $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp2_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp2_max | cut -c-3} °C
+${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp3_label}${color white}: $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp3_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp3_max | cut -c-3} °C
+${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp4_label}${color white}: $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp4_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp4_max | cut -c-3} °C
+${color white}${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp5_label}${color white}: $color${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp5_input | cut -c-2} / ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp5_max | cut -c-3} °C
 ${color white}Usage:$color $cpu% ${cpubar}
 ${color white}LCORE0: $color${cpu cpu0}% $alignr ${freq_g 0} GHz $alignr ${cpubar cpu0 8,60}
 ${color white}LCORE1: $color${cpu cpu1}% $alignr ${freq_g 1} GHz $alignr ${cpubar cpu1 8,60}
@@ -94,10 +94,10 @@ ${color white}LCORE7: $color${cpu cpu7}% $alignr ${freq_g 7} GHz $alignr ${cpuba
 ${color white}Processes:$color $processes  ${alignr 8}${color white}Running:$color $running_processes
 $hr
 ${color white}GPU:
-${color white}${exec nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits} GPU: $color $alignr ${nvidia gpufreq} Mhz | Load: ${exec nvidia-smi | grep % | cut -c 61-63} %
-${color white}Memory: $color $alignr ${nvidia memfreq} Mhz |${exec nvidia-smi | grep % | cut -c 37-40}/${exec nvidia-smi | grep % | cut -c 48-51} MB
+${color white}${exec nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits} GPU: $color $alignr ${nvidia gpufreq} Mhz | Load: ${exec nvidia-smi | grep % | cut -c 72-75}
+${color white}Memory: $color $alignr ${nvidia memfreq} Mhz |${exec nvidia-smi | grep % | cut -c 45-50}/${exec nvidia-smi | grep % | cut -c 57-61} MB
 ${color white}Temperature: $color $alignr ${nvidia temp} °C
-${color white}Power: $color $alignr ${exec nvidia-smi | grep % | cut -c 21-23} W
+${color white}Power: $color $alignr ${exec nvidia-smi | grep % | cut -c 21-43}
 $hr
 ${color white}File systems:
 ${color white}/boot $color${fs_used /boot}/${fs_size /boot} ${fs_bar 6 /boot}
